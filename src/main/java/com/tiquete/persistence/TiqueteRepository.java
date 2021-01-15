@@ -6,14 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tiquete.domain.dto.Tikect;
-import com.tiquete.domain.repository.TikectRepository;
+import com.tiquete.domain.dto.Ticket;
+import com.tiquete.domain.repository.TicketRepository;
 import com.tiquete.persistence.crud.TiqueteCrudRepository;
 import com.tiquete.persistence.entity.Tiquete;
 import com.tiquete.persistence.mapper.TiqueteMapper;
 
 @Repository
-public class TiqueteRepository implements TikectRepository {
+public class TiqueteRepository implements TicketRepository {
 	
 	@Autowired
 	private TiqueteCrudRepository tiqueteCrudReporsitory;
@@ -22,7 +22,7 @@ public class TiqueteRepository implements TikectRepository {
 	private TiqueteMapper mapper;
 	
 	@Override
-	public Tikect save(Tikect tiquete) {
+	public Ticket save(Ticket tiquete) {
 		
 		Tiquete tiquet = mapper.toTiquete(tiquete);
 		
@@ -30,12 +30,12 @@ public class TiqueteRepository implements TikectRepository {
 	}
 	
 	@Override
-	public Optional<Tikect> getTiquete(int id){
+	public Optional<Ticket> getTiquete(int id){
 		return  tiqueteCrudReporsitory.findById(id).map(tiquete -> mapper.toTiquete(tiquete));
 	}
 	
 	@Override
-	public List<Tikect> getAll() {
+	public List<Ticket> getAll() {
 		
 		List<Tiquete> tiquetes = (List<Tiquete>) tiqueteCrudReporsitory.findAll();
 		

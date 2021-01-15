@@ -6,25 +6,37 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tiquete.domain.dto.Tikect;
-import com.tiquete.domain.repository.TikectRepository;
+import com.tiquete.domain.dto.Ticket;
+import com.tiquete.domain.repository.TicketRepository;
+import com.tiquete.domain.validation.TiqueteValidation;
 
 @Service
 public class TiqueteService {
 	
 	@Autowired
-	private TikectRepository tikectReporsitory;
+	private TicketRepository tikectReporsitory;
 	
-	public List<Tikect> getAll(){
+	@Autowired
+	private TiqueteValidation tiqueteValidation;
+	
+	public List<Ticket> getAll(){
 		return tikectReporsitory.getAll();
 	}
 	
-	public Optional<Tikect> getTiquete(int id){
+	public Optional<Ticket> getTiquete(int id){
 		return tikectReporsitory.getTiquete(id);
 	}
 	
-	public Tikect save(Tikect tiquete) {
-		return tikectReporsitory.save(tiquete);
+	public Ticket save(Ticket tiquete) {
+		
+		boolean valida = tiqueteValidation.validaFechasTiqueta(tiquete.getFechaSalida(), tiquete.getFechaLlegada());
+		
+		if(valida){
+			tiquete = tikectReporsitory.save(tiquete);
+	    }else {
+	    	tiquete = null;
+	    }
+		
+		return tiquete;
 	}
-
 }

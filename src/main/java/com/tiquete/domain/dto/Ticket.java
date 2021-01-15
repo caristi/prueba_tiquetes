@@ -2,9 +2,9 @@ package com.tiquete.domain.dto;
 
 import java.util.Date;
 
-public class Tikect {
+public class Ticket {
 	
-	private int idTickect;
+	private int itineraryID;
 	
 	private Date fechaSalida;
 	
@@ -20,12 +20,12 @@ public class Tikect {
 	
 	private double precio;
 	
-	public int getIdTickect() {
-		return idTickect;
+	public int getItineraryID() {
+		return itineraryID;
 	}
 	
-	public void setIdTickect(int idTickect) {
-		this.idTickect = idTickect;
+	public void setItineraryID(int itineraryID) {
+		this.itineraryID = itineraryID;
 	}
 
 	public Date getFechaSalida() {

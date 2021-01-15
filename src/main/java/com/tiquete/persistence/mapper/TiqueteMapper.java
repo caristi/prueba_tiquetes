@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
-import com.tiquete.domain.dto.Tikect;
+import com.tiquete.domain.dto.Ticket;
 import com.tiquete.persistence.entity.Tiquete;
 
 @Component
@@ -16,7 +16,7 @@ import com.tiquete.persistence.entity.Tiquete;
 public interface TiqueteMapper {
 
 	@Mappings({
-		@Mapping(source ="idTiquete",target="idTickect"),
+		@Mapping(source ="idTiquete",target="itineraryID"),
 		@Mapping(source ="ciudadOrigen",target="ciudado_origen"),
 		@Mapping(source ="ciudadDestino",target="ciudad_destino"),
 		@Mapping(source ="edadPasajero",target="edad_pasajero"),
@@ -25,13 +25,13 @@ public interface TiqueteMapper {
 		@Mapping(source ="nomPasajero",target="nom_pasajero"),
 		@Mapping(source ="precio",target="precio")
 	})
-	Tikect toTiquete(Tiquete tiquete);
+	Ticket toTiquete(Tiquete tiquete);
 	
 	@InheritInverseConfiguration
 	@Mappings({
 		@Mapping(target = "mcaEquipajeBodeja", ignore = true)
 	})
-	Tiquete toTiquete(Tikect tiquete);
+	Tiquete toTiquete(Ticket tiquete);
 	
-	List<Tikect> toTiquetes(List<Tiquete> tiquetes);
+	List<Ticket> toTiquetes(List<Tiquete> tiquetes);
 }
