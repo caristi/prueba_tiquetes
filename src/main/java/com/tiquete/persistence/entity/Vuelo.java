@@ -7,16 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name= "vuelos")
-@Getter
-@Setter
 public class Vuelo {
 	
 	@Id
@@ -44,7 +39,68 @@ public class Vuelo {
 	
 	private Double precio;
 	
-    @OneToOne(mappedBy = "Tiquete")
-	private Tiquete Tiquete;
+	public Integer getIdVuelo() {
+		return idVuelo;
+	}
+
+	public void setIdVuelo(Integer idVuelo) {
+		this.idVuelo = idVuelo;
+	}
+
+	public String getCodAvion() {
+		return codAvion;
+	}
+
+	public void setCodAvion(String codAvion) {
+		this.codAvion = codAvion;
+	}
+
+	public Integer getNumPasajeros() {
+		return numPasajeros;
+	}
+
+	public void setNumPasajeros(Integer numPasajeros) {
+		this.numPasajeros = numPasajeros;
+	}
+
+	public String getCiudadOrigen() {
+		return ciudadOrigen;
+	}
+
+	public void setCiudadOrigen(String ciudadOrigen) {
+		this.ciudadOrigen = ciudadOrigen;
+	}
+
+	public String getCiudadDestino() {
+		return ciudadDestino;
+	}
+
+	public void setCiudadDestino(String ciudadDestino) {
+		this.ciudadDestino = ciudadDestino;
+	}
+
+	public Date getFecSalida() {
+		return fecSalida;
+	}
+
+	public void setFecSalida(Date fecSalida) {
+		this.fecSalida = fecSalida;
+	}
+
+	public Date getFecLlegada() {
+		return fecLlegada;
+	}
+
+	public void setFecLlegada(Date fecLlegada) {
+		this.fecLlegada = fecLlegada;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
 
 }
