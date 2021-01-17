@@ -1,14 +1,12 @@
 package com.tiquete.domain.dto;
 
-import java.util.Date;
-
 public class Ticket {
 	
 	private int itineraryID;
 	
-	private Date fechaSalida;
+	private String fechaSalida;
 	
-	private Date fechaLlegada;
+	private String fechaLlegada;
 	
 	private String ciudado_origen;
 	
@@ -28,19 +26,19 @@ public class Ticket {
 		this.itineraryID = itineraryID;
 	}
 
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
-	public Date getFechaLlegada() {
+	public String getFechaLlegada() {
 		return fechaLlegada;
 	}
 
-	public void setFechaLlegada(Date fechaLlegada) {
+	public void setFechaLlegada(String fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
 	}
 

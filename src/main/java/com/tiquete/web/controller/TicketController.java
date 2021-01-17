@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tiquete.domain.dto.Ticket;
+import com.tiquete.domain.dto.TicketID;
 import com.tiquete.domain.service.TiqueteService;
 
 @RestController
@@ -31,12 +32,12 @@ public class TicketController {
 	}
 	
 	@PostMapping("/save")
-	public ResponseEntity<Ticket> save(@RequestBody Ticket tiquete){
+	public ResponseEntity<TicketID> save(@RequestBody Ticket tiquete){
 		
-		tiquete = tiqueteService.save(tiquete);
+		TicketID ticketID = tiqueteService.save(tiquete);
 		
-		if(tiquete != null) {
-			return new ResponseEntity<>(tiquete,HttpStatus.CREATED);
+		if(ticketID != null) {
+			return new ResponseEntity<>(ticketID,HttpStatus.CREATED);
 		}
 		
 		return new ResponseEntity<>(null,HttpStatus.NOT_ACCEPTABLE);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tiquete.domain.dto.Ticket;
+import com.tiquete.domain.dto.TicketID;
 import com.tiquete.domain.repository.TicketRepository;
 import com.tiquete.persistence.crud.TiqueteCrudRepository;
 import com.tiquete.persistence.entity.Tiquete;
@@ -22,16 +23,16 @@ public class TiqueteRepository implements TicketRepository {
 	private TiqueteMapper mapper;
 	
 	@Override
-	public Ticket save(Ticket tiquete) {
-		
-		Tiquete tiquet = mapper.toTiquete(tiquete);
-		
-		return mapper.toTiquete(tiqueteCrudReporsitory.save(tiquet));
+	public Optional<Ticket> getTiquete(int id){
+		return  tiqueteCrudReporsitory.findById(id).map(tiquete -> mapper.toTiquete(tiquete));
 	}
 	
 	@Override
-	public Optional<Ticket> getTiquete(int id){
-		return  tiqueteCrudReporsitory.findById(id).map(tiquete -> mapper.toTiquete(tiquete));
+	public TicketID save(Ticket tiquete) {
+		
+		Tiquete tiquet = mapper.toTiquete(tiquete);
+		
+		return mapper.toTiqueteSave(tiqueteCrudReporsitory.save(tiquet));
 	}
 	
 	@Override

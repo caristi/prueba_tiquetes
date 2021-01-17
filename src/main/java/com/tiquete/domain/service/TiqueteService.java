@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tiquete.domain.dto.Ticket;
+import com.tiquete.domain.dto.TicketID;
 import com.tiquete.domain.repository.TicketRepository;
 import com.tiquete.domain.validation.TiqueteValidation;
 
@@ -19,24 +20,26 @@ public class TiqueteService {
 	@Autowired
 	private TiqueteValidation tiqueteValidation;
 	
-	public List<Ticket> getAll(){
-		return tikectReporsitory.getAll();
-	}
-	
 	public Optional<Ticket> getTiquete(int id){
 		return tikectReporsitory.getTiquete(id);
 	}
 	
-	public Ticket save(Ticket tiquete) {
+	public TicketID save(Ticket tiquete) {
 		
-		boolean valida = tiqueteValidation.validaFechasTiqueta(tiquete.getFechaSalida(), tiquete.getFechaLlegada());
+		TicketID ticketID = new TicketID();
+		
+		boolean valida = tiqueteValidation.validacionesTiquetes(tiquete);
 		
 		if(valida){
-			tiquete = tikectReporsitory.save(tiquete);
+			ticketID = tikectReporsitory.save(tiquete);
 	    }else {
-	    	tiquete = null;
+	    	ticketID = null;
 	    }
 		
-		return tiquete;
+		return ticketID;
+	}
+	
+	public List<Ticket> getAll(){
+		return tikectReporsitory.getAll();
 	}
 }

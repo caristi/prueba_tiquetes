@@ -9,6 +9,7 @@ import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
 import com.tiquete.domain.dto.Ticket;
+import com.tiquete.domain.dto.TicketID;
 import com.tiquete.persistence.entity.Tiquete;
 
 @Component
@@ -20,8 +21,8 @@ public interface TiqueteMapper {
 		@Mapping(source ="ciudadOrigen",target="ciudado_origen"),
 		@Mapping(source ="ciudadDestino",target="ciudad_destino"),
 		@Mapping(source ="edadPasajero",target="edad_pasajero"),
-		@Mapping(source ="fecLlegada",target="fechaLlegada"),
-		@Mapping(source ="fecSalida",target="fechaSalida"),
+		@Mapping(source ="fecLlegada",target="fechaLlegada", dateFormat = "dd-MM-yyyy HH:mm"),
+		@Mapping(source ="fecSalida",target="fechaSalida", dateFormat = "dd-MM-yyyy HH:mm"),
 		@Mapping(source ="nomPasajero",target="nom_pasajero"),
 		@Mapping(source ="precio",target="precio")
 	})
@@ -34,4 +35,9 @@ public interface TiqueteMapper {
 	Tiquete toTiquete(Ticket tiquete);
 	
 	List<Ticket> toTiquetes(List<Tiquete> tiquetes);
+	
+	@Mappings({
+		@Mapping(source ="idTiquete",target="itineraryID")
+	})
+	TicketID toTiqueteSave(Tiquete tiquete);
 }
